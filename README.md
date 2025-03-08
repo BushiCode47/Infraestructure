@@ -18,8 +18,74 @@ Each main folder contains its own `README.md` that explains the folder's structu
 
 Below is an example of the repository structure:
 
-. ├── generic-templates/ │ ├── template-1/ │ │ └── README.md │ └── template-2/ │ └── README.md ├── specific-templates/ │ ├── use-case-1/ │ │ ├── README.md │ │ └── full-tutorial.md │ └── use-case-2/ │ ├── README.md │ └── full-tutorial.md └── README.md
+# Infrastructure Folder Structure
 
+The following is the folder structure that I will follow in this repository to organize the infrastructure and related configurations:
+
+```plaintext
+infrastructure/
+│
+├── docker/
+│   ├── Dockerfile/
+│   │   ├── app/
+│   │   │   └── Dockerfile
+│   │   └── db/
+│   │       └── Dockerfile
+│   ├── docker-compose/
+│   │   ├── gitlab/
+│   │   │   └── docker-compose.yml
+│   │   ├── teamcity/
+│   │   │   └── docker-compose.yml
+│   │   ├── grafana/
+│   │   │   └── docker-compose.yml
+│   │   └── nginx/
+│   │       └── docker-compose.yml
+│   ├── swarm/
+│   │   ├── stack.yml
+│   │   └── init.sh
+│   └── README.md
+│
+├── k8s/
+│   ├── manifests/
+│   │   ├── deployment/
+│   │   │   ├── app-deployment.yaml
+│   │   │   └── db-deployment.yaml
+│   │   ├── services/
+│   │   │   ├── app-service.yaml
+│   │   │   └── db-service.yaml
+│   │   └── ingress/
+│   │       └── app-ingress.yaml
+│   ├── helm/
+│   │   ├── charts/
+│   │   │   ├── app-chart/
+│   │   │   │   └── Chart.yaml
+│   │   │   └── db-chart/
+│   │   │       └── Chart.yaml
+│   │   └── README.md
+│   └── README.md
+│
+├── iac/
+│   ├── terraform/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   ├── ansible/
+│   │   ├── playbook.yml
+│   │   ├── inventory.ini
+│   │   └── vars.yml
+│   └── README.md
+│
+├── ci_cd/
+│   ├── gitlab/
+│   │   ├── .gitlab-ci.yml
+│   │   └── README.md
+│   ├── teamcity/
+│   │   ├── config.xml
+│   │   └── README.md
+│   └── README.md
+│
+└── README.md
+```
 
 ## How It Works
 

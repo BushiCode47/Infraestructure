@@ -1,0 +1,10 @@
+services:
+  app:
+    image: traefik:v3.2
+    ports:
+      - 80:80
+      - 443:443
+    container_name: traefik
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.app. 
