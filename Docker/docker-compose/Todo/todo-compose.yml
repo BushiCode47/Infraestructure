@@ -1,0 +1,12 @@
+services:
+  todo:
+    image: <image_name>
+    ports:
+      - "5000:5000"
+    networks:
+      - todos_networks
+    environment:
+      - DATABASE_URL=postgresql://<username>:<password>@<service_db_name>:5432/<database_name>
+networks:
+  todos_networks:
+    external: true
