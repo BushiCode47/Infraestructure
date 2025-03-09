@@ -1,0 +1,30 @@
+services:
+  db:
+    image: bitnami/postgresql:17.4.0
+    container_name: postgresql
+    environment:
+      POSTGRES_USER: <username>
+      POSTGRES_PASSWORD: <password>
+      POSTGRES_DB: <database_name>
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - todos_networks
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    env_file:
+      - .env
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    networks:
+      - todos_networks
+networks:
+  todos_networks:
+    external: true
+volumes:
+  postgres_data:
