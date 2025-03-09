@@ -20,7 +20,7 @@ Podrás crear tu página web al completo con los archivos necesarios. Destacar q
    ```
 La opción -t indica el tag o nombre que deseas que tenga tu imagen seguido de : indicando la versión.
 Se le puede añadir un tag diferente en caso de querer subir la imagen a un registry:
-    ```sh
+    ```
     -t mi_nombre/mi-ningx:v1
     ```
 
