@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY /src .
 
-RUN pip install psycopg2-binary flask flask_sqlalchemy
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 5000
 

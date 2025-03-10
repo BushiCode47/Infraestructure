@@ -1,0 +1,19 @@
+services:
+  grafana:
+    image: grafana/grafana:11.5.2-ubuntu
+    container_name: grafana
+    restart: on-failure:5
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik
+      - traefik.http.routers.grafana.rule=Host(`grafana.localhost`)
+      - traefik.http.routers.grafana.entrypoints=web
+      - traefik.http.services.grafana-service.loadbalancer.server.scheme=http
+      - traefik.http.services.grafana-service.loadbalancer.server.port=3000
+
+    networks:
+      - traefik
+    
+networks:
+  traefik:
+    external: true

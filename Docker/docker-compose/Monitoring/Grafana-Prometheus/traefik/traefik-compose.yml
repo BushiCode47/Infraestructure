@@ -1,0 +1,45 @@
+services:
+  app:
+    image: traefik:v3.2
+    ports:
+      - 80:80
+      # - 3000:3000
+      # - 8080:8080
+    container_name: traefik
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik
+      - traefik.http.routers.traefik-http.rule=Host(`traefik.localhost`)
+      - traefik.http.routers.traefik-http.entrypoints=web
+      - traefik.http.services.traefik-service.loadbalancer.server.port=8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      # - ./config.yml:/traefik-config/config.yml:ro
+    command:
+      - --api.insecure=true #Habilita la API y el dashboard de Traefik
+      - --providers.docker #Permite que Traefik detecte y gestione contenedores Docker automáticamente
+      - --providers.docker.exposedbydefault=false #No expone contenedores por defecto. Solo los etiquetados con traefik.enable=true
+      - --providers.docker.endpoint=unix:///var/run/docker.sock #Permite que Traefik acceda a la API de Docker para detectar y administrar contenedores
+      - --entrypoints.web.address=:80 #Define entrada de red (Entrypoint) del puerto 80 (HTTP)
+      # - --entrypoints.websecure.address=:443 #Define entrada de red (Entrypoint) del puerto 443 (HTTPS)
+      - --providers.file.filename=/traefik-config/config.yml #Permite añadir configuración desde archivo config.yaml
+      - --accesslog #Regsitra peticiones HTTP, útil para auditoría o debugging
+      # - --metrics.prometheus #Expone métricas a Prometheus
+      - --log #Activa los logs internos
+      - --log.level=DEBUG # DEBUG muestra información detallada 
+    networks:
+      - traefik
+    
+networks:
+  traefik:
+    external: true
+
+
+
+
+
+
+
+
+
+
