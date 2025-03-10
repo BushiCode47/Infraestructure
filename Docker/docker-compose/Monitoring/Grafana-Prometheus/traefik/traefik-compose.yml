@@ -21,7 +21,7 @@ services:
       - --providers.docker.exposedbydefault=false #No expone contenedores por defecto. Solo los etiquetados con traefik.enable=true
       - --providers.docker.endpoint=unix:///var/run/docker.sock #Permite que Traefik acceda a la API de Docker para detectar y administrar contenedores
       - --entrypoints.web.address=:80 #Define entrada de red (Entrypoint) del puerto 80 (HTTP)
-      # - --entrypoints.websecure.address=:443 #Define entrada de red (Entrypoint) del puerto 443 (HTTPS)
+      # - --entrypoints.metrics.address=:9090 #Define entrada de red (Entrypoint) del puerto 443 (HTTPS)
       - --providers.file.filename=/traefik-config/config.yml #Permite añadir configuración desde archivo config.yaml
       - --accesslog #Regsitra peticiones HTTP, útil para auditoría o debugging
       # - --metrics.prometheus #Expone métricas a Prometheus
