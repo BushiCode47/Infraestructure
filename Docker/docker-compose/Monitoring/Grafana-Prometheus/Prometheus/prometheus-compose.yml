@@ -2,6 +2,10 @@ services:
   prometheus:
     image: bitnami/prometheus:3.0.1
     restart: on-failure:5
+    volumes:
+      - ./prometheus.yml:/opt/bitnami/prometheus/conf/config.yml:ro
+    command:
+      - "--config.file=/opt/bitnami/prometheus/conf/config.yml"
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik
