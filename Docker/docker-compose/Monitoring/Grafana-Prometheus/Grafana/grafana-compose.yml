@@ -3,6 +3,9 @@ services:
     image: grafana/grafana:11.5.2-ubuntu
     container_name: grafana
     restart: on-failure:5
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin1234
+      - GF_SECURITY_ALLOW_EMBEDDING=true
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik
